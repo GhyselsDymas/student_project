@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en"
-    xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta charset="UTF-8">
 
     <!--CSS-->
-    <link rel="stylesheet" th:href="@{CSS/Style.css}">
+    <link rel="stylesheet" th:href="@{/CSS/Style.css}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
 
@@ -17,47 +17,19 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 
-    <script>
-        $(document).ready(
-            function () {
-                $('#producttable').DataTable({
-                    "search" : true
-                });
-            }
-        );
-    </script>
     <title>Title</title>
 </head>
 
 <body>
 <div class="container-fluid">
 
-
-    <h1>All our Students!</h1>
-
-    <div id="productwrapper">
-        <table id="producttable">
-            <thead>
-            <tr>
-                <td>Nummer</td>
-                <td>Voornaam</td>
-                <td>Achternaam</td>
-                <td>Specialisatie</td>
-                <td>Meer info</td>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="student : ${all}">
-                <td th:text="${student .id}"></td>
-                <td th:text="${student .voornaam}"></td>
-                <td th:text="${student .achternaam}"></td>
-                <td th:text="${student .specialisatie}"></td>
-                <td><a th:href="@{/naam/{id}(id = ${student .id})}">Klik hier</a></td>
-            </tr>
-            </tbody>
-        </table>
+    <div id="persoon" th:object="${TheID}">
+        <h1 th:text="'Student ' + *{id}"></h1>
+        <p th:text="'Voornaam : ' + *{voornaam}"></p>
+        <p th:text="'Achternaam : ' + *{achternaam}"></p>
+        <p th:text="'Geboortedatum : ' + *{geboortedatum}"></p>
+        <p th:text="'Specialisatie : ' + *{specialisatie}"></p>
     </div>
-
 
 </div>
 </body>
